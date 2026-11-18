@@ -3,7 +3,7 @@
 
 **Curso:** Algoritmos y Estructuras de Datos II (CE 2103) – II Semestre 2026
 **Institución:** Instituto Tecnológico de Costa Rica – Escuela de Ingeniería en Computadores
-Emerson Wallace Marin
+**Emerson Wallace Marin**
 ## Tipo de base de datos seleccionado
 
 **Documentos** – MongoDB, utilizada desde **Python** con la librería 
