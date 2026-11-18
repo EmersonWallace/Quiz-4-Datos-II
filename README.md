@@ -6,7 +6,7 @@
 Emerson Wallace Marin
 ## Tipo de base de datos seleccionado
 
-**Documentos** – MongoDB, utilizada desde **Python** con la librería `pymongo`.
+**Documentos** – MongoDB, utilizada desde **Python** con la librería 
 
 ## Escenario (contexto del problema)
 
@@ -14,7 +14,7 @@ Una tienda de camisas personalizadas permite que cada cliente diseñe su camisa:
 imágenes y textos, y define su posición y escala. Cada pedido es distinto:
 
 - Unos pedidos tienen varias imágenes y textos; otros son camisas lisas sin diseños.
-- Algunos incluyen campos extra (por ejemplo, `notas` de entrega) y otros no.
+- Algunos incluyen campos extra (por ejemplo, notas de entrega) y otros no.
 - La estructura de los diseños puede cambiar con el tiempo (nuevos tipos de elementos, fuentes, etc.).
 
 En una base de datos relacional esto implicaría varias tablas (clientes, pedidos, camisas, diseños) con JOINs y
@@ -43,21 +43,21 @@ Ventajas aprovechadas:
 
 - **Esquema flexible:** los documentos de una misma colección pueden tener campos distintos.
 - **Datos anidados y arreglos:** los diseños viven dentro del pedido, sin JOINs.
-- **Consultas sobre campos anidados:** por ejemplo `cliente.correo` o `disenos.tipo`.
+- **Consultas sobre campos anidados:** por ejemplo cliente.correo o disenos.tipo.
 - **Aggregation pipeline:** cálculo de ingresos por estado directamente en la base de datos.
 
-## Operaciones que muestra el programa (`app.py`)
+## Operaciones que muestra el programa (app.py)
 
 | # | Operación | Método de pymongo |
 |---|-----------|-------------------|
-| 1 | Insertar varios pedidos | `insert_many` |
-| 2 | Buscar por campo anidado | `find_one({"cliente.correo": ...})` |
-| 3 | Buscar dentro de un arreglo | `find({"disenos.tipo": "imagen"})` |
-| 4 | Filtrar y ordenar | `find({"cantidad": {"$gte": 2}}).sort(...)` |
-| 5 | Actualizar y agregar elementos a un arreglo | `update_one` con `$set` y `$push`; `update_many` |
-| 6 | Agregación (total por estado) | `aggregate` con `$project`, `$group`, `$sort` |
-| 7 | Eliminar | `delete_one` |
-| – | Índice sobre `cliente.correo` | `create_index` |
+| 1 | Insertar varios pedidos | insert_many |
+| 2 | Buscar por campo anidado | find_one({"cliente.correo": ...}) |
+| 3 | Buscar dentro de un arreglo | find({"disenos.tipo": "imagen"}) |
+| 4 | Filtrar y ordenar | find({"cantidad": {"$gte": 2}}).sort(...) |
+| 5 | Actualizar y agregar elementos a un arreglo | update_one con $set y $push; update_many |
+| 6 | Agregación (total por estado) | aggregate con $project, $group, $sort |
+| 7 | Eliminar | delete_one |
+| – | Índice sobre cliente.correo | create_index |
 
 ## Requisitos
 
@@ -72,17 +72,17 @@ docker compose up -d
 
 # 2. Instalar dependencias
 python -m venv .venv
-source .venv/bin/activate        # En Windows: .venv\Scripts\activate
+source .venv/bin/activate       
 pip install -r requirements.txt
 
 # 3. Ejecutar el programa
 python app.py
 ```
 
-Si MongoDB corre en otra dirección, se puede definir la variable de entorno `MONGO_URI`
-(por defecto `mongodb://localhost:27017`).
+Si MongoDB corre en otra dirección, se puede definir la variable de entorno MONGO_URI
+(por defecto mongodb://localhost:27017).
 
-Para detener la base de datos: `docker compose down`.
+Para detener la base de datos: docker compose down.
 
 ## Estructura del repositorio
 
